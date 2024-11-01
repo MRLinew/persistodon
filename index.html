@@ -179,22 +179,22 @@
       // TODO update from URL by completing the steps below:
       let stuff = window.location.search.includes("?")
       let stuff2 = new URL(window.location)
-      console.log(stuff2.searchParams)
-
+      let stuff3 = stuff2.searchParams.toString().split("%22")
+      let counter = 0;
+      localStorage.setItem("items","[]")
+      stuff3.forEach(element => {
+        console.log(element)
+      
+        if (counter % 2 == 1){
+          console.log("adding |"+element+"|")
+          console.log(JSON.stringify([...JSON.parse(localStorage.getItem('items') ?? '[]'), element]))
+          localStorage.setItem('items', JSON.stringify([...JSON.parse(localStorage.getItem('items') ?? '[]'), element]))
+        }
+        counter++;
+      });
       // 1. when the page loads, look to see if the url has a querystring that has the kind of data you added to it above
-        if(stuff){
-          console.log(stuff2.searchParams.entries())
-          console.log(stuff2.searchParams.keys.length)
-          
-
-          
-          for (const [key, value] of stuff2.searchParams.entries()) {
-            key.forEach((element) => console.log(element));
-
-}
       // 2. if there is such data in the querystring, replace the state in localStorage with the data in the URL
 
-    }
   }
     // initialize the page
     function init() {
